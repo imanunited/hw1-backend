@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="oose.hw1.mapper.BookMapper">
+
+    <insert id="insertBook" parameterType="oose.hw1.common.entity.Book">
+        INSERT INTO book (title, author, isbn, userId)
+        VALUES (#{title}, #{author}, #{isbn}, #{userId})
+    </insert>
+
+    <select id="getBook" resultType="oose.hw1.common.entity.Book">
+        SELECT * FROM book
+        <where>
+            <if test="title != null and title != ''">
+                AND title = #{title}
+            </if>
+            <if test="author != null and author != ''">
+                AND author = #{author}
+            </if>
+            <if test="isbn != null and isbn != ''">
+                AND isbn = #{isbn}
+            </if>
+        </where>
+    </select>
+
+</mapper>
